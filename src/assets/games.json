@@ -1,0 +1,52 @@
+[
+  {
+    "gameId": 1,
+    "gameName": "Pandemic",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "genre": "Collaborative",
+    "description": "Save the world from plagues!",
+    "duration": "1 hour",
+    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+  },
+  {
+    "gameId": 2,
+    "gameName": "Splendor",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "genre": "Resource Management",
+    "description": "Buy gems, create the best collections, and attract the nobles.",
+    "duration": "30 minutes",
+    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+  },
+  {
+    "gameId": 3,
+    "gameName": "The Stars are Right",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "genre": "Strategy",
+    "description": "Align the stars to create constallations to summon Lovecraftian demons",
+    "duration": "45 mintues",
+    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+  },
+  {
+    "gameId": 4,
+    "gameName": "Hanabi",
+    "minPlayers": 3,
+    "maxPlayers": 5,
+    "genre": "Collaborative",
+    "description": "Work together to build the best fireworks display",
+    "duration": "30 minutes",
+    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+  },  
+  {
+    "gameId": 5,
+    "gameName": "Alien Frontiers",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "genre": "Luck-Chance",
+    "description": "Roll your dice to gather resources to colonize the new frontier",
+    "duration": "45 minutes",
+    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+  }
+]

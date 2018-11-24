@@ -1,0 +1,49 @@
+<div class='card'>
+  <div class='card-header'>
+      {{pageTitle}}
+  </div>
+  <div class = 'card-body'>
+    <div class='row'>
+        <div class = 'col-md-1'> Search: </div>
+        <div class='col-md-4'>
+           <input type='text'[(ngModel)]='listFilter'  />
+        </div>
+          
+    </div>
+    <div class='row'>
+      <div class = 'col-md-6'> 
+         <h6>Filted By: {{listFilter}}</h6>
+      </div>
+        
+  </div>
+      
+  </div>
+    <div class='table-responsive'>
+        <table class='table' *ngIf ='gameList && gameList.length'>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Game</th>
+              <th>Number of Players</th>
+              <th>Genre</th>
+
+            </tr>
+          </thead>
+          <tbody>
+           <tr *ngFor='let game of filteredGames'>
+              <td></td>
+              <td>{{game.gameName}}</td>
+              <td>{{game.minPlayers}} - {{game.maxPlayers}}</td>
+              <td>{{game.genre}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+    </div>
+  
+ 
+
+ 
+
+</div>

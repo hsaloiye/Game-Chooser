@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IGame} from "./game"
+import { unusedValueExportToPlacateAjd } from '@angular/core/src/render3/interfaces/container';
 
 @Component({
   selector: 'app-game-list',
@@ -18,9 +19,19 @@ export class GameListComponent implements OnInit {
 
   set listFilter(value:string) {
     this._listFilter = value;
-    this.filteredGames = this.listFilter ? this.performFilter(this.listFilter, this.gameList) : this.gameList;
+    this.filteredGames = this.listFilter ? this.filterByGameName(this.listFilter, this.gameList) : this.gameList;
   }
-  
+
+  _playersFilter: number;
+
+  get playersFilter(): number{
+    return this._playersFilter;
+  }
+
+  set playersFilter(value: number){
+    this._playersFilter = value;
+    this.filteredGames = this.playersFilter ? this.filterByNumberOfPlayers(this.playersFilter, this.gameList): this.gameList;
+  }
 
   gameList: IGame[]= [{
     "gameId": 1,
@@ -72,10 +83,20 @@ export class GameListComponent implements OnInit {
   ngOnInit() {
   }
 
-  performFilter(filterValue:string, list: IGame[]): IGame[]{
+  filterByGameName(filterValue:string, list: IGame[]): IGame[]{
 
     filterValue = filterValue.toLocaleLowerCase();
     return list.filter((game: IGame) =>
        game.gameName.toLocaleLowerCase().indexOf(filterValue) !== -1);
   }
+
+  filterByNumberOfPlayers(filterValue: number, list: IGame[]): IGame[]{
+
+    return list.filter((game: IGame) =>
+      (filterValue >= game.minPlayers &&
+      filterValue <= game.maxPlayers));
+  }
+
+  
+
 }

@@ -10,6 +10,8 @@ import { unusedValueExportToPlacateAjd } from '@angular/core/src/render3/interfa
 export class GameListComponent implements OnInit {
   pageTitle: string = 'Find your game here:';
   filteredGames: IGame[];
+  numberOfPlayers: number;
+  searchTerm: string;
   
   _listFilter: string;
 
@@ -19,10 +21,12 @@ export class GameListComponent implements OnInit {
 
   set listFilter(value:string) {
     this._listFilter = value;
-    this.filteredGames = this.listFilter ? this.filterByGameName(this.listFilter, this.gameList) : this.gameList;
+    this.searchTerm = value;
+    this.filteredGames = this.listFilter ? this.performFilter(this.listFilter,this.numberOfPlayers, this.gameList) : this.gameList;
   }
 
   _playersFilter: number;
+
 
   get playersFilter(): number{
     return this._playersFilter;
@@ -30,7 +34,8 @@ export class GameListComponent implements OnInit {
 
   set playersFilter(value: number){
     this._playersFilter = value;
-    this.filteredGames = this.playersFilter ? this.filterByNumberOfPlayers(this.playersFilter, this.gameList): this.gameList;
+    this.numberOfPlayers = value;
+    this.filteredGames = this.playersFilter ? this.performFilter(this.searchTerm, this.playersFilter,this.gameList): this.gameList;
   }
 
   gameList: IGame[]= [{
@@ -47,7 +52,7 @@ export class GameListComponent implements OnInit {
     "gameId": 2,
     "gameName": "Splendor",
     "minPlayers": 2,
-    "maxPlayers": 4,
+    "maxPlayers": 6,
     "genre": "Resource Management",
     "description": "Buy gems, create the best collections, and attract the nobles.",
     "duration": "30 minutes",
@@ -83,6 +88,15 @@ export class GameListComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  performFilter(filterValue: string, numberOfPlayers: number, list:IGame[]): IGame[]{
+    return list.filter((game: IGame) =>
+    ((numberOfPlayers > 0? this.isBetween(game.minPlayers, game.maxPlayers, numberOfPlayers) : true )&&
+      (filterValue? game.gameName.toLocaleLowerCase().indexOf(filterValue) !== -1 : true))
+      );
+
+  }
+
   filterByGameName(filterValue:string, list: IGame[]): IGame[]{
 
     filterValue = filterValue.toLocaleLowerCase();
@@ -91,10 +105,14 @@ export class GameListComponent implements OnInit {
   }
 
   filterByNumberOfPlayers(filterValue: number, list: IGame[]): IGame[]{
-
+    
     return list.filter((game: IGame) =>
-      (filterValue >= game.minPlayers &&
-      filterValue <= game.maxPlayers));
+      (filterValue > 0 ? filterValue >= game.minPlayers &&
+      filterValue <= game.maxPlayers: true));
+  }
+
+  isBetween(minPlayers: number, maxPlayers: number, targetPlayers: number): boolean{
+      return (targetPlayers >= minPlayers && targetPlayers <= maxPlayers);
   }
 
   

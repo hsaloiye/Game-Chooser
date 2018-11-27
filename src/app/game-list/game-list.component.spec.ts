@@ -88,7 +88,7 @@ describe('GameListComponent', () => {
               "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
             }];
 
-            var actualList: IGame[] = component.filterByGameName('game', testGameList);
+            var actualList: IGame[] = component.performFilter('game', 0, testGameList);
             expect(actualList).toEqual(expectedList);
 
         })
@@ -96,7 +96,7 @@ describe('GameListComponent', () => {
         it('should return an empty list when no games names match the serach', () => {
           var expectedList: IGame[] = [];
 
-          var actualList: IGame[] = component.filterByGameName('zzz', testGameList);
+          var actualList: IGame[] = component.performFilter('zzz', 0, testGameList);
 
           expect(actualList).toEqual(expectedList);
         })
@@ -126,7 +126,7 @@ describe('GameListComponent', () => {
               "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
             }];
             
-            var actualList: IGame[] = component.filterByNumberOfPlayers(2, testGameList);
+            var actualList: IGame[] = component.performFilter( '', 2, testGameList);
 
             expect(actualList).toEqual(expectedList);
           
@@ -135,10 +135,32 @@ describe('GameListComponent', () => {
         it ('should return an empty list if no game can accomodate the selected number of players' , () =>{
             var expectedList: IGame[] = [];
 
-            var actualList: IGame[] = component.filterByNumberOfPlayers(7, testGameList);
+            var actualList: IGame[] = component.performFilter('', 7, testGameList);
 
             expect(actualList).toEqual(expectedList);
         });
+
+        it('should return the full list if the any option is selected', () => {
+           var actualList: IGame[] = component.performFilter('', 0, testGameList);
+
+           expect(actualList).toEqual(testGameList);
+        });
+
+        describe('isBetween function', () => {
+
+          it('should return true if the given value is between the max and min', ()=>{
+              expect(component.isBetween(1,3, 2)).toBe(true);
+          });
+
+          it('should return true if the given value is between the max and min inclusive ' , ()=>{
+            expect(component.isBetween(1,3, 3)).toBe(true);
+        });
+
+          it('should return false if the given value is between the max and min', ()=>{
+            expect(component.isBetween(1,3, 5)).toBe(false);
+        });
+        }
+        )
 
       });
 

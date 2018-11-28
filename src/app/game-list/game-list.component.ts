@@ -22,7 +22,7 @@ export class GameListComponent implements OnInit {
   set listFilter(value:string) {
     this._listFilter = value;
     this.searchTerm = value;
-    this.filteredGames = this.listFilter ? this.performFilter(this.listFilter,this.numberOfPlayers, this.gameList) : this.gameList;
+    this.filteredGames = this.listFilter  || this.numberOfPlayers? this.performFilter(this.listFilter,this.numberOfPlayers, this.gameList) : this.gameList;
   }
 
   _playersFilter: number;

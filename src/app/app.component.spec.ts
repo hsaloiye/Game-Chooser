@@ -4,6 +4,7 @@ import{FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {GameListComponent} from './game-list/game-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
 
       imports: [
         RouterTestingModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
       ],
       declarations: [
         AppComponent,

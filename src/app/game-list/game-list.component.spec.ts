@@ -4,6 +4,7 @@ import{FormsModule} from '@angular/forms';
 import { GameListComponent } from './game-list.component';
 import { componentNeedsResolution } from '@angular/core/src/metadata/resource_loading';
 import {IGame} from "./game"
+import { HttpClientModule } from '@angular/common/http';
 
 describe('GameListComponent', () => {
   let component: GameListComponent;
@@ -16,6 +17,7 @@ describe('GameListComponent', () => {
       ],
       imports:[
         FormsModule,
+        HttpClientModule,
       ]
     })
     .compileComponents();

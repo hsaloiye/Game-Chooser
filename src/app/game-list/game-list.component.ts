@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IGame} from "./game"
 import { unusedValueExportToPlacateAjd } from '@angular/core/src/render3/interfaces/container';
+import {GameListService} from './game-list.service';
 
 @Component({
   selector: 'app-game-list',
@@ -12,6 +13,7 @@ export class GameListComponent implements OnInit {
   filteredGames: IGame[];
   numberOfPlayers: number;
   searchTerm: string;
+  errorMessage: string;
   
   _listFilter: string;
 
@@ -38,54 +40,23 @@ export class GameListComponent implements OnInit {
     this.filteredGames = this.playersFilter ? this.performFilter(this.searchTerm, this.playersFilter,this.gameList): this.gameList;
   }
 
-  gameList: IGame[]= [{
-    "gameId": 1,
-    "gameName": "Pandemic",
-    "minPlayers": 2,
-    "maxPlayers": 4,
-    "genre": "Collaborative",
-    "description": "Save the world from plagues!",
-    "duration": "1 hour",
-    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-  },
-  {
-    "gameId": 2,
-    "gameName": "Splendor",
-    "minPlayers": 2,
-    "maxPlayers": 6,
-    "genre": "Resource Management",
-    "description": "Buy gems, create the best collections, and attract the nobles.",
-    "duration": "30 minutes",
-    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-  },
-  {
-    "gameId": 3,
-    "gameName": "The Stars are Right",
-    "minPlayers": 2,
-    "maxPlayers": 4,
-    "genre": "Strategy",
-    "description": "Align the stars to create constallations to summon Lovecraftian demons",
-    "duration": "45 mintues",
-    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-  },
-  {
-    "gameId": 4,
-    "gameName": "Hanabi",
-    "minPlayers": 3,
-    "maxPlayers": 5,
-    "genre": "Collaborative",
-    "description": "Work together to build the best fireworks display",
-    "duration": "30 minutes",
-    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-  }];
+  gameList: IGame[]= [];
 
 
 
-  constructor() { 
+
+  constructor(private gameListService: GameListService) { 
     this.filteredGames = this.gameList;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.gameListService.getGames().subscribe(
+      gameList => {
+        this.gameList = gameList, 
+        this.filteredGames = this.gameList;
+      },
+      error => this.errorMessage = <any>error
+    );
   }
 
 

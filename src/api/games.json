@@ -3,7 +3,7 @@
     "gameId": 1,
     "gameName": "Pandemic",
     "minPlayers": 2,
-    "maxPlayers": 4,
+    "maxPlayers": 6,
     "genre": "Collaborative",
     "description": "Save the world from plagues!",
     "duration": "1 hour",
@@ -46,6 +46,16 @@
     "maxPlayers": 4,
     "genre": "Luck-Chance",
     "description": "Roll your dice to gather resources to colonize the new frontier",
+    "duration": "45 minutes",
+    "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+  },
+  {
+    "gameId": 6,
+    "gameName": "Checkers",
+    "minPlayers": 2,
+    "maxPlayers": 2,
+    "genre": "Strategy",
+    "description": "A very classic board game",
     "duration": "45 minutes",
     "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
   }

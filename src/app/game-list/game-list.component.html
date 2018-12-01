@@ -29,7 +29,6 @@
         <table class='table' *ngIf ='gameList && gameList.length'>
           <thead>
             <tr>
-              <th>Image</th>
               <th>Game</th>
               <th>Number of Players</th>
               <th>Genre</th>
@@ -38,7 +37,6 @@
           </thead>
           <tbody>
            <tr *ngFor='let game of filteredGames'>
-              <td></td>
               <td>{{game.gameName}}</td>
               <td>{{game.minPlayers}} - {{game.maxPlayers}}</td>
               <td>{{game.genre}}</td>

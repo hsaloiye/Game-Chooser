@@ -12,6 +12,7 @@ export class GameListComponent implements OnInit {
   pageTitle: string = 'Find your game here:';
   filteredGames: IGame[];
   numberOfPlayers: number;
+  genre: string;
   searchTerm: string;
   errorMessage: string;
   
@@ -24,7 +25,8 @@ export class GameListComponent implements OnInit {
   set listFilter(value:string) {
     this._listFilter = value;
     this.searchTerm = value;
-    this.filteredGames = this.listFilter  || this.numberOfPlayers? this.performFilter(this.listFilter,this.numberOfPlayers, this.gameList) : this.gameList;
+    this.filteredGames = this.listFilter  || 
+    this.numberOfPlayers? this.performFilter(this.listFilter,this.numberOfPlayers, this.genre, this.gameList) : this.gameList;
   }
 
   _playersFilter: number;
@@ -37,7 +39,7 @@ export class GameListComponent implements OnInit {
   set playersFilter(value: number){
     this._playersFilter = value;
     this.numberOfPlayers = value;
-    this.filteredGames = this.playersFilter ? this.performFilter(this.searchTerm, this.playersFilter,this.gameList): this.gameList;
+    this.filteredGames = this.playersFilter ? this.performFilter(this.searchTerm, this.playersFilter, this.genre, this.gameList): this.gameList;
   }
 
   gameList: IGame[]= [];
@@ -60,10 +62,12 @@ export class GameListComponent implements OnInit {
   }
 
 
-  performFilter(filterValue: string, numberOfPlayers: number, list:IGame[]): IGame[]{
+  performFilter(filterValue: string, numberOfPlayers: number, genre: string, list:IGame[]): IGame[]{
     return list.filter((game: IGame) =>
-    ((numberOfPlayers > 0? this.isBetween(game.minPlayers, game.maxPlayers, numberOfPlayers) : true )&&
+    ((genre ? game.genre === genre : true) &&
+      (numberOfPlayers > 0? this.isInPlayerRange(game.minPlayers, game.maxPlayers, numberOfPlayers) : true )&&
       (filterValue? game.gameName.toLocaleLowerCase().indexOf(filterValue) !== -1 : true))
+
       );
 
   }
@@ -75,14 +79,19 @@ export class GameListComponent implements OnInit {
        game.gameName.toLocaleLowerCase().indexOf(filterValue) !== -1);
   }
 
-  filterByNumberOfPlayers(filterValue: number, list: IGame[]): IGame[]{
+  filterByNumberOfPlayers(selectedNumberOfPlayers: number, list: IGame[]): IGame[]{
     
     return list.filter((game: IGame) =>
-      (filterValue > 0 ? filterValue >= game.minPlayers &&
-      filterValue <= game.maxPlayers: true));
+      (selectedNumberOfPlayers > 0 ? selectedNumberOfPlayers >= game.minPlayers &&
+        selectedNumberOfPlayers <= game.maxPlayers: true));
   }
 
-  isBetween(minPlayers: number, maxPlayers: number, targetPlayers: number): boolean{
+  filterByGenre(selectedGenre: string, list: IGame[]): IGame[]{  
+    return list.filter((game: IGame) =>
+    (selectedGenre ? game.genre === selectedGenre : true));
+  }
+
+  isInPlayerRange(minPlayers: number, maxPlayers: number, targetPlayers: number): boolean{
       return (targetPlayers >= minPlayers && targetPlayers <= maxPlayers);
   }
 

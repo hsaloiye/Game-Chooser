@@ -303,6 +303,23 @@ describe('GameListComponent', () => {
 
   });
 
+  it('should return a list of games with selected name, number of players and genre', ()=> {
+    var expectedList: IGame[] = [{
+      "gameId": 2,
+      "gameName": "Fake Game",
+      "minPlayers": 2,
+      "maxPlayers": 4,
+      "genre": "Resource Management",
+      "description": "Buy gems, create the best collections, and attract the nobles.",
+      "duration": "30 minutes",
+      "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+    }]
+    var actualList: IGame[] = component.performFilter('game', 3, 'Resource Management', testGameList);
+
+    expect(actualList).toEqual(expectedList);
+
+  });
+
 
   });
 

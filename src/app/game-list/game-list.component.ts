@@ -17,6 +17,8 @@ export class GameListComponent implements OnInit {
   errorMessage: string;
   
   _listFilter: string;
+  _playersFilter: number;
+  _genreFilter: string;
 
   get listFilter(): string{
     return this._listFilter;
@@ -25,12 +27,10 @@ export class GameListComponent implements OnInit {
   set listFilter(value:string) {
     this._listFilter = value;
     this.searchTerm = value;
-    this.filteredGames = this.listFilter  || 
-    this.numberOfPlayers? this.performFilter(this.listFilter,this.numberOfPlayers, this.genre, this.gameList) : this.gameList;
+    this.filteredGames = this.performFilter(this.listFilter,this.numberOfPlayers, this.genre, this.gameList);
+    // this.filteredGames = this.listFilter  || 
+    //         this.numberOfPlayers? this.performFilter(this.listFilter,this.numberOfPlayers, this.genre, this.gameList) : this.gameList;
   }
-
-  _playersFilter: number;
-
 
   get playersFilter(): number{
     return this._playersFilter;
@@ -39,7 +39,20 @@ export class GameListComponent implements OnInit {
   set playersFilter(value: number){
     this._playersFilter = value;
     this.numberOfPlayers = value;
-    this.filteredGames = this.playersFilter ? this.performFilter(this.searchTerm, this.playersFilter, this.genre, this.gameList): this.gameList;
+    this.filteredGames = this.performFilter(this.searchTerm,this.playersFilter, this.genre, this.gameList)
+    //this.filteredGames = this.playersFilter ? this.performFilter(this.searchTerm, this.playersFilter, this.genre, this.gameList): this.gameList;
+  }
+
+  get genreFilter(): string{
+    return this._genreFilter;
+  }
+
+  set genreFilter(value: string){
+    this._genreFilter = value;
+    this.genre = value;
+    this.filteredGames = this.performFilter(this.searchTerm,this.numberOfPlayers, this.genre, this.gameList)
+    //this.filteredGames = this.genreFilter? this.performFilter(this.searchTerm, this.numberOfPlayers, this.genreFilter, this.gameList): this.gameList;
+    
   }
 
   gameList: IGame[]= [];

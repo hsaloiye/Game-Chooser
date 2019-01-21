@@ -1,0 +1,37 @@
+<h1>
+  Add a new game to the shelf!
+</h1>
+
+
+<div class='table-responsive'>
+    <table class='table'>
+        
+      <tbody>
+        <tr>
+          <th>Game <input type='text'[(ngModel)]='newGameName'  /></th>
+          </tr>
+        <tr>
+            
+        </tr>
+        <tr>
+            <th>Minimum Number of Players <input type='number' [(ngModel)]='newMinPlayers'min ="0" ></th>
+        </tr>
+        <tr>
+            <th>Maximum Number of Players <input type='number' [(ngModel)]='newMaxPlayers'min ="0" value="any"></th>
+        </tr>
+        <tr>
+            <th>Genre <select [(ngModel)] = 'newGameGenre'>
+                <option value='' selected >Any</option>
+                <option>Strategy</option>
+                <option>Luck</option>
+                <option>Collaborative</option>
+                <option>Social Deception</option>
+                <option>Party</option>
+                <option>Family</option>
+              </select></th>
+        </tr>
+       
+      </tbody>
+      
+    </table>
+</div>

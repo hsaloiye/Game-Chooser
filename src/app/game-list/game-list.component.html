@@ -3,40 +3,6 @@
       {{pageTitle}}
   </div>
   <div class = 'card-body'>
-    <!--<div class='row'>
-        <div class = 'col-md-2'> Search: </div>
-        <div class='col-md-2'>
-           <input type='text'[(ngModel)]='listFilter'  />
-        </div>
-
-        <div class = 'col-md-2'> Number of Players </div>
-        <div class = 'col-md-2'>
-          <select [(ngModel)] = 'playersFilter'>
-            <option value='0'>any</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-          </select>
-        </div>
-
-        <div class = 'col-md-2'> Genre </div>
-        <div class = 'col-md-2'>
-          <select [(ngModel)] = 'genreFilter'>
-            <option value='0'>any</option>
-            <option>Strategy</option>
-            <option>Luck</option>
-            <option>Collaborative</option>
-            <option>Social Deception</option>
-            <option>Party</option>
-            <option>Family</option>
-          </select>
-        </div>
-          
-    </div>
-  -->  
   </div>
     <div class='table-responsive'>
         <table class='table' *ngIf ='gameList && gameList.length'>
@@ -44,7 +10,7 @@
           <thead>
             <tr>
               <th>Game <input type='text'[(ngModel)]='listFilter'  /></th>
-              <th>Number of Players
+              <th>Players
                   
                   <select [(ngModel)] = 'playersFilter'>
                     <option value='0' selected >Any</option>

@@ -1,37 +1,31 @@
-<h1>
+<h3 class='card-subheader'>
   Add a new game to the shelf!
-</h1>
+</h3>
+<form id='newGameForm'>
+  <div class='form-group'>
+    <label for='gameName'>Game</label>
+    <input type='text' class='form-control' id='gameName' [(ngModel)]='newGameName' />
 
+    <label for='minPlayers'>Minimum Number of Players</label>
+    <input type='number' class='form-control' id='minPlayers' [(ngModel)]='newMinPlayers' min="0">
 
-<div class='table-responsive'>
-    <table class='table'>
-        
-      <tbody>
-        <tr>
-          <th>Game <input type='text'[(ngModel)]='newGameName'  /></th>
-          </tr>
-        <tr>
-            
-        </tr>
-        <tr>
-            <th>Minimum Number of Players <input type='number' [(ngModel)]='newMinPlayers'min ="0" ></th>
-        </tr>
-        <tr>
-            <th>Maximum Number of Players <input type='number' [(ngModel)]='newMaxPlayers'min ="0" value="any"></th>
-        </tr>
-        <tr>
-            <th>Genre <select [(ngModel)] = 'newGameGenre'>
-                <option value='' selected >Any</option>
-                <option>Strategy</option>
-                <option>Luck</option>
-                <option>Collaborative</option>
-                <option>Social Deception</option>
-                <option>Party</option>
-                <option>Family</option>
-              </select></th>
-        </tr>
-       
-      </tbody>
-      
-    </table>
-</div>
+    <label for='maxPlayers'>Maximum Number of Players</label>
+    <input type='number' class='form-control' id='maxPlayers' [(ngModel)]='newMaxPlayers' min="0" value="any">
+
+    <label for='gameGenre'>Genre </label>
+    <select [(ngModel)]='newGameGenre' class='form-control' id='gameGenre'>
+      <option>Strategy</option>
+      <option>Luck</option>
+      <option>Collaborative</option>
+      <option>Social Deception</option>
+      <option>Party</option>
+      <option>Family</option>
+    </select>
+
+    <label for='gameDescription'>Description</label>
+    <textarea class='form-control' id='gameDescription'></textarea>
+    <div>
+      <button type='submit' class='btn btn-primary btn-bottom'>Save Game</button>
+    </div>
+  </div>
+</form>

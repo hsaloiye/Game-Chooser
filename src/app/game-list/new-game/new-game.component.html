@@ -3,17 +3,21 @@
 </h3>
 <form id='newGameForm'>
   <div class='form-group'>
-    <label for='gameName'>Game</label>
+    <label for='gameName'>Game Name</label>
     <input type='text' class='form-control' id='gameName' [(ngModel)]='newGameName' />
-
+   </div>
+   <div class='form-group'>
     <label for='minPlayers'>Minimum Number of Players</label>
     <input type='number' class='form-control' id='minPlayers' [(ngModel)]='newMinPlayers' min="0">
-
+  </div>
+  <div class='form-group'>
     <label for='maxPlayers'>Maximum Number of Players</label>
     <input type='number' class='form-control' id='maxPlayers' [(ngModel)]='newMaxPlayers' min="0" value="any">
-
+  </div>
+  <div class='form-group'>
     <label for='gameGenre'>Genre </label>
     <select [(ngModel)]='newGameGenre' class='form-control' id='gameGenre'>
+      <option disabled selected value>-- select a genre --</option>
       <option>Strategy</option>
       <option>Luck</option>
       <option>Collaborative</option>
@@ -21,11 +25,13 @@
       <option>Party</option>
       <option>Family</option>
     </select>
+  </div><div class='form-group'>
 
     <label for='gameDescription'>Description</label>
     <textarea class='form-control' id='gameDescription'></textarea>
-    <div>
-      <button type='submit' class='btn btn-primary btn-bottom'>Save Game</button>
-    </div>
   </div>
+  
+  <div>
+      <button type='submit' class='btn btn-primary'>Save Game</button>
+    </div>
 </form>

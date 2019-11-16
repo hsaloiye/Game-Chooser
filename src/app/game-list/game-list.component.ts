@@ -8,7 +8,7 @@ import {GameListService} from './game-list.service';
   styleUrls: ['./game-list.component.css']
 })
 export class GameListComponent implements OnInit {
-  pageTitle: string = 'Find your game here:';
+  pageTitle: string = 'Let me help you find a game:';
   filteredGames: IGame[];
   numberOfPlayers: number;
   genre: string;

@@ -11,6 +11,7 @@ import { GameListComponent } from './game-list/game-list.component';
 import { NewGameComponent } from './game-list/new-game/new-game.component';
 import { GameDetailsComponent } from './game-list/game-details/game-details.component';
 import { CommonModule } from '@angular/common';  
+import { GameDetailsGuard } from './game-list/game-details.guard';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { CommonModule } from '@angular/common';
     RouterModule.forRoot([
       {path: 'newGame', component: NewGameComponent},
       {path: 'games', component: GameListComponent},
-      {path: 'games/:id', component: GameDetailsComponent},
+      {path: 'games/:id', 
+        canActivate:[GameDetailsGuard],
+        component: GameDetailsComponent},
       {path: '', redirectTo: 'games', pathMatch: 'full'},
       {path: '**', redirectTo: 'games', pathMatch: 'full'}//replace this with 404/error
     

@@ -38,7 +38,9 @@
           </thead>
           <tbody>
            <tr *ngFor='let game of filteredGames'>
-              <td>{{game.gameName}}</td>
+              <td>
+                <a [routerLink]="['/games', game.gameId]">{{game.gameName}}</a>
+                </td>
               <td>{{game.minPlayers}} - {{game.maxPlayers}}</td>
               <td>{{game.genre}}</td>
             </tr>

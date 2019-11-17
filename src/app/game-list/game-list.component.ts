@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {IGame} from "./game"
-import { unusedValueExportToPlacateAjd } from '@angular/core/src/render3/interfaces/container';
 import {GameListService} from './game-list.service';
 
 @Component({
-  //selector: 'app-game-list',
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css']
 })
